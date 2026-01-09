@@ -1,0 +1,58 @@
+/* color palette from <https://github.com/vuejs/theme> */
+:root {
+  --bookshop-white: #f8f8f8;
+  --bookshop-black: #181818;
+  --bookshop-grey: #b0afaf;
+  --bookshop-dark-grey: #373131;
+  --bookshop-light-green: #d7f1ce;
+  --bookshop-green: #c2f1b3;
+  --bookshop-dark-green: #59764f;
+  --bookshop-red: #ff7f50;
+  --bookshop-indigo: #2c3e50;
+}
+
+/* semantic color variables for this project */
+:root {
+    --color-background: var(--bookshop-black);
+    --color-background-light: var(--bookshop-light-green);
+    --color-background-alert: var(--bookshop-red);
+    --color-background-info: var(--bookshop-green);
+
+    --color-border: var(--bookshop-green);
+    --color-border-dark: var(--bookshop-grey);
+    --color-button: var(var(--bookshop-green));
+
+    --color-heading-2: var(--bookshop-green);
+    --color-heading-3: var(--bookshop-white);
+    --color-text: var(--bookshop-grey);
+    --color-text-alert: var(--bookshop-red);
+    --color-text-dark-on-light: var(--bookshop-dark-grey);
+    --color-text-light-on-dark: var(--bookshop-white);
+    --color-link: var(--bookshop-green);
+    --color-link-hover: var(var(--bookshop-white));
+
+  --section-gap: 160px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family: sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
