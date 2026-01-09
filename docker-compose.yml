@@ -1,0 +1,48 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+    env_file:
+      - .env
+    ports:
+      - "${FRONTEND_PORT}:5173"
+    depends_on:
+      - backend
+    
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    ports:
+      - "${BACKEND_PORT}:3000"
+    environment:
+      PORT: ${BACKEND_PORT}
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+volumes:
+  mysql_data:
