@@ -1,9 +1,9 @@
 export const apiUrl = 'http://localhost:3000/api/v1'
 
-export const booksApiUrl = 'http://localhost:3000/api/v1/books'
+export const booksApiUrl = `${apiUrl}/books`
 
-export const cartApiUrl = 'http://localhost:3000/api/v1/cart'
+export const cartApiUrl = `${apiUrl}/cart`
 
-export const ordersApiUrl = 'http://localhost:3000/api/v1/orders'
+export const ordersApiUrl = `${apiUrl}/orders`
 
-export const usersApiUrl = 'http://localhost:3000/api/v1/users'
+export const usersApiUrl = `${apiUrl}/users`
