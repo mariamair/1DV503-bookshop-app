@@ -29,7 +29,7 @@
     --color-text-dark-on-light: var(--bookshop-dark-grey);
     --color-text-light-on-dark: var(--bookshop-white);
     --color-link: var(--bookshop-green);
-    --color-link-hover: var(var(--bookshop-white));
+    --color-link-hover: var(--bookshop-white);
 
   --section-gap: 160px;
 }
