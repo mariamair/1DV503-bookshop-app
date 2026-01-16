@@ -43,5 +43,4 @@ i {
   height: 32px;
   color: var(--color-text-dark-on-light);
 }
-
 </style>
