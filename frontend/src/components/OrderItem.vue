@@ -38,7 +38,9 @@ const fetchOrder = async (orderNumber) => {
   )
 
   const data = await response.json()
-  if (!response.ok) throw data
+        if (!response.ok) {
+        throw data
+      }
 
   order.value = data
 }
