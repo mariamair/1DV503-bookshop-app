@@ -13,7 +13,7 @@ import { UnauthorizedError } from './ErrorHandler.js'
  * @param {object} res - Express response object.
  * @param {Function} next - Express next middleware function.
  */
-export async function isAuthorized (req, res, next) {
+export async function isAuthenticated (req, res, next) {
   try {
     if (!req.session || !req.session.user) {
       throw new UnauthorizedError('User not authorized') 
