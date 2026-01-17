@@ -6,7 +6,7 @@
  */
 
 import express from 'express'
-import { isAuthorized } from '../../../utils/auth.js'
+import { isAuthenticated } from '../../../utils/auth.js'
 import { OrderController } from '../../../controllers/OrderController.js'
 
 export const router = express.Router()
@@ -18,16 +18,14 @@ router.param('id', (req, res, next, id) => orderController.loadItem(req, res, ne
 
 // Map HTTP verbs and route paths to controller action methods.
 router.get('/',  
-  isAuthorized,
+  isAuthenticated,
   (req, res, next) => orderController.getOrdersByUserId(req, res, next))
 router.get('/:id',  
-  isAuthorized, 
-  // isAuctorized,
+  isAuthenticated, 
   (req, res, next) => orderController.getOrderById(req, res, next))
 router.post('/', 
-  isAuthorized,
+  isAuthenticated,
   (req, res, next) => orderController.createOrder(req, res, next)) 
 router.delete('/:id',  
-  isAuthorized, 
-  // isAuctorized,
+  isAuthenticated, 
   (req, res, next) => orderController.deleteOrder(req, res, next)) 
