@@ -2,7 +2,7 @@
   import { booksApiUrl } from '@/utils/api'
   import { inject, onMounted, ref } from 'vue'
 
-  const emit = defineEmits(['search', 'error'])
+  const emit = defineEmits(['search',])
   const reportError = inject('reportError')
   const subjects = ref([])
   const subject = ref('')
@@ -11,7 +11,6 @@
   const lastSearchParams = ref({})
   const books = ref([])
   const numberOfResults = ref(0)
-  const currentPage = ref(1)
   const loading = ref(true)
   const props = defineProps({
     resultLimit: {
@@ -74,7 +73,6 @@
 
       const response = await fetch(`${booksApiUrl}?${params}`)
       const data = await response.json()
-              console.log(data)
 
       if (!response.ok) {
         if (data.statusCode === 404) {
@@ -89,7 +87,6 @@
       // Create a new array from fetched data
       books.value = [...data.results] 
       numberOfResults.value = data.rowCount
-      currentPage.value = page
 
     } catch (error) {
       reportError(error)
@@ -104,14 +101,15 @@
       title: title.value,
       author: author.value
     }
-    await fetchBooks(lastSearchParams.value, props.page) 
-    emit('search', { 
-      books: books.value,
-      numberOfResults: numberOfResults.value
-    })
-    // Clear form after submit
+    await performSearch(props.page)
+/*     // Clear form after submit
     title.value = ''  
-    author.value = ''  
+    author.value = ''   */
+  }
+
+  const resetSearchForm = () => {
+    title.value = ''  
+    author.value = ''
   }
 
   onMounted(() => {
@@ -123,9 +121,15 @@
 
 <template>
   <slot name="heading"></slot>
-  <form v-on:submit.prevent="onSubmit">
+  <form 
+    v-on:submit.prevent="onSubmit"
+  >
       <label for="subject">Subject</label>
-      <select v-model="subject" id="subject">
+      <select 
+        v-model="subject" 
+        v-on:change="resetSearchForm"
+        id="subject"
+      >
         <option value="">--Select a subject--</option>
         <option 
           v-for="subject in subjects" 
@@ -138,7 +142,7 @@
     <label for="title">Title</label>
     <input v-model="title" type="text" id="title" placeholder="Search for a title">
     <label for="author">Author</label>
-    <input v-model="author" type="text" id="author" placeholder="Search for an author">
-    <button type="submit" v-on:submit="search" :disabled="!subject && !title && !author">Search</button>
+    <input v-model="author" type="text" id="author" placeholder="Search for an author (first name)">
+    <button type="submit" :disabled="!subject && !title && !author">Search</button>
   </form>
 </template>
