@@ -16,9 +16,14 @@ img {
 h2 {
   margin-top: 1rem;
   font-size: 1.5rem;
-  font-weight: 500;
   margin-bottom: 0.4rem;
   color: var(--color-heading-2);
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+  color: var(--color-heading-3);
 }
 
 .nav-button {
@@ -29,8 +34,8 @@ h2 {
 }
 
 .nav-button:hover {
-  color: var(--color-link-hover);
-  background-color: hsla(160, 92%, 37%, 0.352);
+  color: var(--color-hover-text);
+  background-color: var(--color-hover-background);
   border-radius: 0.2rem;
   padding: 0.2rem;
 }
@@ -42,8 +47,8 @@ form {
   display: grid;
   grid-template-columns: min-content 300px;
   gap: 0.8rem;
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border: var(--border-width) var(--border-style) var(--border-color);
+  border-radius: var(--border-radius);
   min-width: 450px;
 }
 
@@ -67,5 +72,21 @@ a {
 }
 
 button {
+  background-color: var(--color-button);
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.4rem;
   font-size: 1rem;
+}
+
+button:hover {
+  color: var(--color-hover-text);
+  background-color: var(--color-hover-background);
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  opacity: 0.6;
+  cursor: not-allowed;
 }

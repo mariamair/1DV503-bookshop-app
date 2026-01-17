@@ -18,8 +18,8 @@ defineProps({
   background-color: var(--color-background-info);
   margin: 1rem 0;
   padding: 0.8rem 1.5rem;
-  border: 1px solid var(--color-border-dark);
-  border-radius: 10px;
+  border: var(--border-width) var(--border-style) var(--color-border-dark);
+  border-radius: var(--border-radius);
 }
 
 p {

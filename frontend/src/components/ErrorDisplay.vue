@@ -24,8 +24,8 @@
   margin-top: 1rem;
   padding: 0.8rem;
   display: flex;
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border: var(--border-width) var(--border-style) var(--border-color);
+  border-radius: var(--border-radius);
   min-width: 450px;
 }
 
