@@ -33,6 +33,7 @@ const onSubmit = async () => {
     isbn: props.isbn,
     quantity: quantity.value
   })
+  quantity.value = 1
 }
 
 </script>
