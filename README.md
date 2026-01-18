@@ -36,5 +36,5 @@ Fork and clone the repository.
 6. If you are using a local database instead of the one included in the docker compose setup, change `DB_HOST=localhost` to `DB_HOST=host.docker.internal`.
 7. If you changed `BACKEND_PORT=3000` to a different port in the backend *.env* file, open `frontend/src/utils/api.js` and update `apiUrl` to use the correct backend port. 
    If you didn't change the backend port, you can use the `apiUrl` as is.
-8. Run `docker compose up -d`
+8. Run `docker compose up`
 9. Open http://localhost:5173/ in a browser window.
