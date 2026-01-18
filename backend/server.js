@@ -13,12 +13,26 @@ import { router } from './routes/router.js'
 import { ErrorHandler } from './utils/ErrorHandler.js'
 import { pool } from './utils/database.js'
 
-pool.getConnection()
-  .then(() => console.log('Database connected successfully'))
-  .catch((error) => {
-    console.error('Database connection failed:', error)
-    process.exit(1)
-  })
+const connectWithRetry = async (retries = 10, delay = 3000) => {
+  for (let i = 0; i < retries; i++) {
+    try {
+      await pool.getConnection()
+      console.log('Database connected successfully')
+      return
+    } catch (error) {
+      console.error(`DB connection failed (attempt ${i + 1}/${retries})`)
+      console.error(error.address + ':' + error.port)
+      if (i === retries - 1) {
+        console.error('Giving up. Exiting.')
+        process.exit(1)
+      }
+      await new Promise(res => setTimeout(res, delay))
+    }
+  }
+}
+
+await connectWithRetry()
+
 
 const app = express()
 
